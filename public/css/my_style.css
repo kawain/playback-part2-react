@@ -1,0 +1,91 @@
+body {
+    padding-top: 120px;
+    /* height: 100vw; */
+}
+
+.dropdown-menu {
+    height: 300px;
+    overflow-y: auto;
+}
+
+.top-jumbotron {
+    background: url("../img/person-822803_1920.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    padding: 100px 0;
+}
+
+.jumbotron h1 {
+    font-weight: bold;
+}
+
+.sub-jumbotron {
+    background: url("../img/electric-2616842_1920.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+footer {
+    margin-top: 100px;
+}
+
+footer .row {
+    padding: 100px 0;
+}
+
+.table th, .table td {
+    text-align: center;
+}
+
+input[type=range] {
+    vertical-align: middle;
+}
+
+.alert {
+    margin: 40px 0;
+}
+
+.ansbtn {
+    margin: 10px 5px;
+}
+
+.display_chord {
+    font-size: 24px;
+    padding: 10px;
+    text-align: center;
+}
+
+.chordone {
+    /* text-align: center; */
+    display: inline-block;
+    width: 160px;
+    padding: 5px;
+    margin: 5px;
+    border-bottom: black solid 1px;
+}
+
+.separator {
+    display: inline-block;
+    /* text-align: center; */
+    width: 2px;
+    padding: 0px;
+}
+
+.line {
+    line-height: 2rem;
+}
+
+.explanation {
+    font-size: 15px;
+    text-align: left;
+    margin: 0;
+    padding: 0;
+}
+
+@media screen and (max-width: 480px) {
+    .sub-jumbotron h1 {
+        font-size: 2em !important;
+    }
+}
