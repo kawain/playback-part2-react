@@ -17,7 +17,7 @@ class Top extends Component {
                     <div className="card-header"><span role="img" aria-label="Guitar">🎸</span> コード進行・編集・再生</div>
                     <div className="card-body">
                         <p>コード進行を入力して再生できます。色々なコード進行でアドリブの練習ができます。</p>
-                        <p className="text-right"><a className="btn btn-primary" href="playback2.html">Click</a></p>
+                        <p className="text-right"><a className="btn btn-primary" href="playback.html">Click</a></p>
                     </div>
                 </div>
 

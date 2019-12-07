@@ -57,7 +57,6 @@ class Scale extends Component {
     }
 
     keyChange(e) {
-        e.preventDefault();
         this.setState({
             keyValue: e.target.value,
             keySelectedIndexText: e.target[e.target.selectedIndex].text
@@ -65,7 +64,6 @@ class Scale extends Component {
     }
 
     scaleChange(e) {
-        e.preventDefault();
         this.setState({
             scaleValue: e.target.value,
             scaleSelectedIndexText: e.target[e.target.selectedIndex].text

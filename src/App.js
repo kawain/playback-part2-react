@@ -13,6 +13,8 @@ import Basic from './component/Basic';
 import Triad from './component/Triad';
 import Chord from './component/Chord';
 import Metronome from './component/Metronome';
+import PlayBack from './component/PlayBack';
+import HowToWrite from './component/HowToWrite';
 
 import NotFound from './component/NotFound';
 
@@ -30,12 +32,29 @@ class App extends Component {
             <Route path='/triad.html' exact component={Triad} />
             <Route path='/chord.html' exact component={Chord} />
             <Route path='/metronome.html' exact component={Metronome} />
+            <Route path='/playback.html' exact component={PlayBack} />
+            <Route path='/howtowrite.html' exact component={HowToWrite} />
             <Route path='/quiz.html' exact component={Quiz} />
             <Route path='/tuning.html' exact component={Tuning} />
             <Route path='/scale.html' exact component={Scale} />
             <Route path='/about.html' exact component={About} />
             <Route path='/privacy.html' exact component={Privacy} />
             <Route path='/terms.html' exact component={Terms} />
+
+            {/* <Route path='/test/react_test/' exact component={Top} />
+            <Route path='/test/react_test/basic.html' exact component={Basic} />
+            <Route path='/test/react_test/triad.html' exact component={Triad} />
+            <Route path='/test/react_test/chord.html' exact component={Chord} />
+            <Route path='/test/react_test/metronome.html' exact component={Metronome} />
+            <Route path='/test/react_test/playback.html' exact component={PlayBack} />
+            <Route path='/test/react_test/howtowrite.html' exact component={HowToWrite} />
+            <Route path='/test/react_test/quiz.html' exact component={Quiz} />
+            <Route path='/test/react_test/tuning.html' exact component={Tuning} />
+            <Route path='/test/react_test/scale.html' exact component={Scale} />
+            <Route path='/test/react_test/about.html' exact component={About} />
+            <Route path='/test/react_test/privacy.html' exact component={Privacy} />
+            <Route path='/test/react_test/terms.html' exact component={Terms} /> */}
+
             <Route component={NotFound} />
           </Switch>
           <Foot />

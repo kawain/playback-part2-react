@@ -84,6 +84,15 @@ input[type=range] {
     padding: 0;
 }
 
+.howtowrite .badge {
+    font-size: 1.2em;
+    margin: 1px;
+}
+
+.howtowrite ul {
+    line-height: 2.0;
+}
+
 @media screen and (max-width: 480px) {
     .sub-jumbotron h1 {
         font-size: 2em !important;

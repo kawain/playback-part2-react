@@ -2,6 +2,8 @@
   "name": "playback-part2-react",
   "version": "0.1.0",
   "private": true,
+  "homepage": "./",
+  "proxy": "http://localhost:8080",
   "dependencies": {
     "bootstrap": "^4.4.1",
     "react": "^16.12.0",
