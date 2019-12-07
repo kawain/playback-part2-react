@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 
 class Privacy extends Component {
     componentDidMount() {
+        document.title = "プライバシーポリシー | ギター練習サイト コードトーン";
         window.scrollTo(0, 0)
     }
 

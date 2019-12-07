@@ -30,6 +30,7 @@ class Scale extends Component {
     }
 
     componentDidMount() {
+        document.title = "スケール | ギター練習サイト コードトーン";
         window.scrollTo(0, 0)
         //読み込んだら実行
         let url = "./api/?mode=scale";

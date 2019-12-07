@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import Nav from './component/Nav';
+import PageNav from './component/PageNav';
 import Foot from './component/Foot';
 import Top from './component/Top';
 import About from './component/About';
@@ -22,7 +22,7 @@ class App extends Component {
     return (
       <BrowserRouter>
         <React.Fragment>
-          <Nav />
+          <PageNav />
           <Switch>
             <Route path='/' exact component={Top} />
             <Route path='/basic.html' exact component={Basic} />

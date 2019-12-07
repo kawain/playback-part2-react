@@ -45,6 +45,7 @@ class Chord extends Component {
     }
 
     componentDidMount() {
+        document.title = "ランダム・コード＆コードトーン | ギター練習サイト";
         window.scrollTo(0, 0)
         this.setState({
             disabled: false
@@ -111,12 +112,7 @@ class Chord extends Component {
                     </ol>
                 </nav>
 
-                <div className="alert alert-danger alert-dismissible fade show" role="alert">
-                    <strong>再生ボタンを押すと音がなります</strong> 音量に注意してください。
-                        <button type="button" className="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
+                <p className="text-danger p-2">※ボタンを押すと音がなります</p>
 
                 <h2 className="display-3">{this.state.now}</h2>
                 <p className="text-right h3">{this.state.next}</p>

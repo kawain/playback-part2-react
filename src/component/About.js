@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 
 class About extends Component {
     componentDidMount() {
+        document.title = "このサイトについて | ギター練習サイト コードトーン";
         window.scrollTo(0, 0)
     }
 

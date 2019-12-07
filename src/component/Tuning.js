@@ -32,6 +32,7 @@ class Tuning extends Component {
     }
 
     componentDidMount() {
+        document.title = "チューニング | ギター練習サイト コードトーン";
         window.scrollTo(0, 0)
     }
 
@@ -72,12 +73,7 @@ class Tuning extends Component {
                     </ol>
                 </nav>
 
-                <div className="alert alert-danger alert-dismissible fade show" role="alert">
-                    <strong>ボタンを押すと音がなります</strong> 音量に注意してください。
-                        <button type="button" className="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
+                <p className="text-danger p-2">※ボタンを押すと音がなります</p>
 
                 <div className="row">
                     <div className="col-lg-6 my-5">
