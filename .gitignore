@@ -27,5 +27,5 @@ hoge.html
 .vscode
 .env
 
-public/js/dist
-public/js/.cache
+public/dist
+public/.cache

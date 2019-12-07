@@ -93,7 +93,7 @@ class PlayBack extends Component {
                 display_chord.innerHTML = html;
 
                 let hidden_chord = win.document.getElementById("hidden_chord");
-                hidden_chord.innerText = JSON.stringify(arr2);
+                hidden_chord.innerHTML = JSON.stringify(arr2);
 
                 let hidden_param = win.document.getElementById("hidden_param");
                 const obj = {
@@ -102,7 +102,7 @@ class PlayBack extends Component {
                     "beatValue": this.state.beat,
                     "volumeValue": this.state.volume
                 }
-                hidden_param.innerText = JSON.stringify(obj);
+                hidden_param.innerHTML = JSON.stringify(obj);
             })
         }
 
