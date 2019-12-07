@@ -46,7 +46,7 @@ class Basic extends Component {
 
     componentDidMount() {
         document.title = "ランダム指板の音 | ギター練習サイト コードトーン";
-        window.scrollTo(0, 0)
+        window.scrollTo(0, 0);
         this.setState({
             disabled: false
         });

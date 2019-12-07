@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 class Terms extends Component {
     componentDidMount() {
         document.title = "利用規約 | ギター練習サイト コードトーン";
-        window.scrollTo(0, 0)
+        window.scrollTo(0, 0);
     }
 
     render() {

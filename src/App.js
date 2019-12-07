@@ -12,6 +12,7 @@ import Tuning from './component/Tuning';
 import Basic from './component/Basic';
 import Triad from './component/Triad';
 import Chord from './component/Chord';
+import Metronome from './component/Metronome';
 
 import NotFound from './component/NotFound';
 
@@ -28,6 +29,7 @@ class App extends Component {
             <Route path='/basic.html' exact component={Basic} />
             <Route path='/triad.html' exact component={Triad} />
             <Route path='/chord.html' exact component={Chord} />
+            <Route path='/metronome.html' exact component={Metronome} />
             <Route path='/quiz.html' exact component={Quiz} />
             <Route path='/tuning.html' exact component={Tuning} />
             <Route path='/scale.html' exact component={Scale} />

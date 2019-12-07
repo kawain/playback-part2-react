@@ -46,7 +46,7 @@ class Chord extends Component {
 
     componentDidMount() {
         document.title = "ランダム・コード＆コードトーン | ギター練習サイト";
-        window.scrollTo(0, 0)
+        window.scrollTo(0, 0);
         this.setState({
             disabled: false
         });
@@ -136,11 +136,11 @@ class Chord extends Component {
                     </div>
                     <div className="m-2">
                         <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAeElEQVRIie2U0QnAIAwFb6SO4GbNhrpBO0I3SH+UCrFQJPmqB/k09wKJsHBmA3ItdwTQrtxoqZUAgXQNS5VNCxJwYJNqFTWmBeegcUvdMy34+nAJluCdC7umGcc1TYxvQYHdQzBCsNOEfHYFO5U7Ei2AZ5oSJfghN3LBWGKLsUm4AAAAAElFTkSuQmCC" alt="volume" />
-                        <input type="range" id="volume_value" min="0" max="1" step="0.1" value={this.state.volumeValue} onChange={this.volumeChange} />
+                        <input type="range" min="0" max="1" step="0.1" value={this.state.volumeValue} onChange={this.volumeChange} />
                     </div>
                     <div className="m-2">
                         <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAA1klEQVRIie2TXQ3DMAyEPyiFECYrhEIIhDJYGSwQxmBlkDJoGGwMtpdE86T8eO1TpZ7kl/h8sc8JnDgCBuAGeOAdw8ezyx7hHliFaCnWyP0LkxAIgAWMyJt4FgTvukXcKvhW8KcWuRdk0+BKGFFXtSug7xygE9w0yVoiD3w91yDtoMs0mJ3Coeu+Ax4FbprC5QoX2t5b4Bl5cyafduFzxWlJJYyC8+LXGpVO64I7uudb1JmpW2TiJWNFPFk055JO0V0L1SXLT7Y3ip9tUQrUYtkw+Ykj4wNDlnej8x6PgwAAAABJRU5ErkJggg==" alt="bpm" />
-                        <input type="range" id="bpm_value" min="10" max="250" step="1" value={this.state.bpmValue} onChange={this.bpmChange} />
+                        <input type="range" min="10" max="250" step="1" value={this.state.bpmValue} onChange={this.bpmChange} />
                     </div>
                 </div>
 

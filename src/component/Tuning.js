@@ -33,7 +33,7 @@ class Tuning extends Component {
 
     componentDidMount() {
         document.title = "チューニング | ギター練習サイト コードトーン";
-        window.scrollTo(0, 0)
+        window.scrollTo(0, 0);
     }
 
     volumeChange(e) {

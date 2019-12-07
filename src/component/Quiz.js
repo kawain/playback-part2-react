@@ -23,7 +23,7 @@ class Quiz extends Component {
 
     componentDidMount() {
         document.title = "指板の音当てクイズ | ギター練習サイト コードトーン";
-        window.scrollTo(0, 0)
+        window.scrollTo(0, 0);
         this.questions();
     }
 
