@@ -13,21 +13,13 @@ class Top extends Component {
                     <h1 className="display-4 text-black-50 ml-4">Guitar practice</h1>
                 </div>
 
-                <div className="card">
-                    <div className="card-header"><span role="img" aria-label="Guitar">🎸</span> コード進行・編集・再生</div>
-                    <div className="card-body">
-                        <p>コード進行を入力して再生できます。色々なコード進行でアドリブの練習ができます。</p>
-                        <p className="text-right"><a className="btn btn-primary" href="playback.html">Click</a></p>
-                    </div>
-                </div>
-
                 <div className="row">
                     <div className="col-sm-6 my-4">
                         <div className="card">
-                            <div className="card-header"><span role="img" aria-label="Guitar">🎸</span> コード進行掲示板</div>
+                            <div className="card-header"><span role="img" aria-label="Guitar">🎸</span> コード進行・編集・再生</div>
                             <div className="card-body">
-                                <p>かっこいいコード進行ができたら公開して共有しましょう。</p>
-                                <p className="text-right"><a className="btn btn-primary" href="bbs.php">Click</a></p>
+                                <p>コード進行を入力して再生できます。色々なコード進行でアドリブの練習ができます。</p>
+                                <p className="text-right"><a className="btn btn-primary" href="playback.html">Click</a></p>
                             </div>
                         </div>
                     </div>

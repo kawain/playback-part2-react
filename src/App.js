@@ -3,20 +3,21 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import PageNav from './component/PageNav';
 import Foot from './component/Foot';
 import Top from './component/Top';
-import About from './component/About';
-import Privacy from './component/Privacy';
-import Terms from './component/Terms';
-import Quiz from './component/Quiz';
-import Scale from './component/Scale';
+import PlayBack from './component/PlayBack';
+import Metronome from './component/Metronome';
 import Tuning from './component/Tuning';
+import Quiz from './component/Quiz';
 import Basic from './component/Basic';
 import Triad from './component/Triad';
 import Chord from './component/Chord';
-import Metronome from './component/Metronome';
-import PlayBack from './component/PlayBack';
+import Scale from './component/Scale';
 import HowToWrite from './component/HowToWrite';
+import About from './component/About';
+import Privacy from './component/Privacy';
+import Terms from './component/Terms';
 
 import NotFound from './component/NotFound';
+
 
 
 
@@ -28,15 +29,15 @@ class App extends Component {
           <PageNav />
           <Switch>
             <Route path='/' exact component={Top} />
+            <Route path='/playback.html' exact component={PlayBack} />
+            <Route path='/metronome.html' exact component={Metronome} />
+            <Route path='/tuning.html' exact component={Tuning} />
+            <Route path='/quiz.html' exact component={Quiz} />
             <Route path='/basic.html' exact component={Basic} />
             <Route path='/triad.html' exact component={Triad} />
             <Route path='/chord.html' exact component={Chord} />
-            <Route path='/metronome.html' exact component={Metronome} />
-            <Route path='/playback.html' exact component={PlayBack} />
-            <Route path='/howtowrite.html' exact component={HowToWrite} />
-            <Route path='/quiz.html' exact component={Quiz} />
-            <Route path='/tuning.html' exact component={Tuning} />
             <Route path='/scale.html' exact component={Scale} />
+            <Route path='/howtowrite.html' exact component={HowToWrite} />
             <Route path='/about.html' exact component={About} />
             <Route path='/privacy.html' exact component={Privacy} />
             <Route path='/terms.html' exact component={Terms} />

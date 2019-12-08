@@ -20,7 +20,6 @@ class PageNav extends Component {
                                 <NavDropdown title="Dropdown" id="basic-nav-dropdown">
                                     <NavDropdown.Item href="./playback.html">コード進行・編集・再生</NavDropdown.Item>
                                     <NavDropdown.Divider />
-                                    <NavDropdown.Item href="./bbs.php">コード進行掲示板</NavDropdown.Item>
                                     <NavDropdown.Item href="./metronome.html">メトロノーム</NavDropdown.Item>
                                     <NavDropdown.Item href="./tuning.html">チューニング</NavDropdown.Item>
                                     <NavDropdown.Item href="./quiz.html">指板の音当てクイズ</NavDropdown.Item>

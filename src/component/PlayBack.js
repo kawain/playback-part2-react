@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import uuidv4 from 'uuid/v4';
 import { divideInput } from '../chordtone';
 
 class PlayBack extends Component {
@@ -12,6 +13,9 @@ class PlayBack extends Component {
             bpm: 100,
             beat: 8,
             volume: 0.5,
+            localStorageData: [],
+            sample: "",
+            sampleOption: []
         }
 
         this.titleChange = this.titleChange.bind(this);
@@ -23,12 +27,42 @@ class PlayBack extends Component {
         this.volumeChange = this.volumeChange.bind(this);
         this.playClick = this.playClick.bind(this);
         this.saveClick = this.saveClick.bind(this);
-        // this.Demo = this.Demo.bind(this);
+        this.localstorageRemoveOne = this.localstorageRemoveOne.bind(this);
+        this.localstorageShow = this.localstorageShow.bind(this);
+        this.sampleChange = this.sampleChange.bind(this);
     }
 
     componentDidMount() {
         document.title = "コード進行・編集・再生 | ギター練習サイト コードトーン";
         window.scrollTo(0, 0);
+
+        this.localstorageListing();
+
+        // PHPからfetch
+        // 読み込んだら実行
+        let url = "./api/?mode=chordall";
+        if (process.env.NODE_ENV !== "production") {
+            console.log('devlope');
+            url = "http://localhost:8000/?mode=chordall";
+        }
+        fetch(url)
+            .then(response => {
+                return response.json();
+            })
+            .then(myJson => {
+                if (myJson.error) {
+                    alert("Read failure.");
+                } else if (myJson.error) {
+                    alert(myJson.error);
+                } else {
+                    let arr = [<option key={uuidv4()} value=""></option>];
+                    for (let v of myJson) {
+                        arr.push(<option key={uuidv4()} value={v.id}>{v.title}</option>);
+                    }
+                    this.setState({ sampleOption: arr });
+                }
+            })
+            .catch(error => alert(error));
 
     }
 
@@ -63,12 +97,19 @@ class PlayBack extends Component {
     playClick(e) {
         e.preventDefault();
 
-        let [arr3, arr2] = this.checkArea();
+        let arr = [];
+
+        try {
+            arr = this.checkArea();
+        } catch (error) {
+            alert(error);
+            return;
+        }
 
         let no = 0;
         let html = "";
 
-        for (let v of arr3) {
+        for (let v of arr[0]) {
             if (v === "|") {
                 html += `<span class="separator">${v}</span>`
             } else {
@@ -93,7 +134,7 @@ class PlayBack extends Component {
                 display_chord.innerHTML = html;
 
                 let hidden_chord = win.document.getElementById("hidden_chord");
-                hidden_chord.innerHTML = JSON.stringify(arr2);
+                hidden_chord.innerHTML = JSON.stringify(arr[1]);
 
                 let hidden_param = win.document.getElementById("hidden_param");
                 const obj = {
@@ -108,20 +149,13 @@ class PlayBack extends Component {
 
     }
 
-    saveClick(e) {
-        e.preventDefault();
-        console.log("save");
-
-    }
-
     //入力コード進行チェック
     checkArea() {
 
         let value = this.state.area;
 
         if (value.length < 1) {
-            alert("No chord progression entered");
-            return;
+            throw new Error("No chord progression entered");
         }
 
         //第1段階
@@ -184,8 +218,7 @@ class PlayBack extends Component {
         });
 
         if (bad) {
-            alert("There were characters that could not be used");
-            return;
+            throw new Error("There were characters that could not be used");
         }
 
         // 転調の場合
@@ -207,8 +240,8 @@ class PlayBack extends Component {
             }
         }
 
-        console.log(arr2);
-        console.log(arr3);
+        // console.log(arr2);
+        // console.log(arr3);
 
         return [arr3, arr2];
     }
@@ -279,6 +312,194 @@ class PlayBack extends Component {
         }
     }
 
+    // ------------------------
+    // ローカルストレージ関係
+    // ------------------------
+
+    saveClick(e) {
+        e.preventDefault();
+
+        const title = this.state.title;
+        const chord = this.state.area;
+
+        if (title.length < 1 || chord.length < 1) {
+            alert("No title or chord progression entered");
+            return;
+        }
+
+        //入力チェック
+        try {
+            this.checkArea();
+        } catch (error) {
+            alert(error);
+            return;
+        }
+
+        // 保存したいドキュメント
+        const doc = {
+            title: title,
+            chord: chord,
+            count: this.state.count,
+            bpm: this.state.bpm,
+            beat: this.state.beat,
+            createdAt: new Date()
+        };
+
+        try {
+            //保存の前に現在入っているものを取り出し
+            let chords = [];
+            let tmp = localStorage.getItem('chords');
+
+            if (tmp) {
+                chords = JSON.parse(tmp);
+            }
+
+            //それに追加
+            //chords配列の最後に追加
+            chords.push(doc);
+            //json文字列に変換して追加
+            localStorage.setItem('chords', JSON.stringify(chords));
+
+            alert("Saved");
+
+            this.localstorageListing();
+
+        } catch (e) {
+            alert(`Failed to save localStorage ${e}`);
+        }
+    }
+
+    localstorageListing() {
+        try {
+            let chords = [];
+            let tmp = localStorage.getItem('chords');
+            if (tmp) {
+                chords = JSON.parse(tmp);
+            } else {
+                return;
+            }
+
+            //ソート
+            chords.sort((a, b) => {
+                if (a.createdAt > b.createdAt) return -1;
+                if (a.createdAt < b.createdAt) return 1;
+                return 0;
+            })
+
+            let html = [];
+            for (const v of chords) {
+                html.push(
+                    <div className="alert alert-dismissible alert-light my-2">
+                        <button type="button" className="close" data-id={v.createdAt} onClick={this.localstorageRemoveOne}>&times;</button>
+                        <a href="/#" data-id={v.createdAt} onClick={this.localstorageShow}>{v.title}</a>
+                    </div>);
+            }
+
+            this.setState({ localStorageData: html });
+
+        } catch (e) {
+            console.log(e);
+        }
+    }
+
+    localstorageRemoveOne(e) {
+        const id = e.currentTarget.dataset.id;
+        try {
+            let chords = [];
+            let tmp = localStorage.getItem('chords');
+            if (tmp) {
+                chords = JSON.parse(tmp);
+            } else {
+                return;
+            }
+
+            const newchords = [];
+
+            for (const v of chords) {
+                if (String(v.createdAt) === id) {
+                    //もしもcreatedAtとidが同じだったらなにもしない
+                } else {
+                    newchords.push(v);
+                }
+            }
+
+            localStorage.setItem('chords', JSON.stringify(newchords));
+
+            this.localstorageListing();
+
+        } catch (e) {
+            alert(`Remove failure ${e}`);
+        }
+
+    }
+
+    localstorageShow(e) {
+        e.preventDefault();
+        const id = e.currentTarget.dataset.id;
+        try {
+            let chords = [];
+            let tmp = localStorage.getItem('chords');
+            if (tmp) {
+                chords = JSON.parse(tmp);
+            } else {
+                return;
+            }
+
+            for (const v of chords) {
+                if (String(v.createdAt) === id) {
+                    //画面に表示
+                    this.setState({
+                        title: v.title,
+                        area: v.chord,
+                        count: v.count,
+                        bpm: v.bpm,
+                        beat: v.beat
+                    });
+                    break;
+                }
+            }
+            window.scrollTo(0, 0);
+        } catch (e) {
+            alert(`Read failure ${e}`);
+        }
+    }
+
+    // ------------------------
+    // PHPからfetch
+    // ------------------------
+    sampleChange(e) {
+        const id = e.currentTarget.value;
+        this.setState({ sample: id });
+        let url = `./api/?mode=chordone&id=${id}`;
+        if (process.env.NODE_ENV !== "production") {
+            console.log('devlope');
+            url = `http://localhost:8000/?mode=chordone&id=${id}`;
+        }
+        fetch(url)
+            .then(response => {
+                return response.json();
+            })
+            .then(myJson => {
+                if (myJson.error) {
+                    alert("Read failure.");
+                } else if (myJson.error) {
+                    alert(myJson.error);
+                } else {
+                    //画面に表示
+                    this.setState({
+                        title: myJson.title,
+                        area: myJson.chord,
+                        count: myJson.start_count,
+                        bpm: myJson.bpm,
+                        beat: myJson.beat
+                    });
+                    window.scrollTo(0, 0);
+                }
+            })
+            .catch(error => alert(error));
+    }
+
+
     render() {
         return (
             <div className="container">
@@ -295,8 +516,6 @@ class PlayBack extends Component {
                 </nav>
 
                 <h3 className="my-4">コード進行入力</h3>
-
-                <a href="./score.html" target="_blank">Link Here</a>
 
                 <p className="text-right"><a href="./howtowrite.html"><span className="badge badge-info">コード進行記入例と説明</span></a></p>
 
@@ -413,12 +632,15 @@ class PlayBack extends Component {
 
                 </form>
 
-                <h4 className="my-4">保存コード一覧</h4>
-                <div id="chord_list">ありません</div>
+                {this.state.localStorageData.length > 0 ? <h4 className="my-4">保存コード一覧</h4> : <></>}
 
-                <div className="alert alert-success" role="alert">
-                    ※ 公開して共有する場合は <a href="./bbs.php">コード進行掲示板</a> をご利用ください
-                </div>
+                <div>{this.state.localStorageData}</div>
+
+                <h4 className="my-4">サンプルコード一覧</h4>
+                <select className="form-control" value={this.state.sample} onChange={this.sampleChange}>
+                    {this.state.sampleOption}
+                </select>
+
             </div>
         );
     }

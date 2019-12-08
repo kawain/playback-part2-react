@@ -36,7 +36,7 @@ class Scale extends Component {
         let url = "./api/?mode=scale";
         if (process.env.NODE_ENV !== "production") {
             console.log('devlope');
-            url = "http://localhost/test/api/?mode=scale";
+            url = "http://localhost:8000/?mode=scale";
         }
         fetch(url)
             .then(response => {
