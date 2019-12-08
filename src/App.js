@@ -56,6 +56,7 @@ class App extends Component {
             <Route path='/test/react_test/privacy.html' exact component={Privacy} />
             <Route path='/test/react_test/terms.html' exact component={Terms} /> */}
 
+
             <Route component={NotFound} />
           </Switch>
           <Foot />

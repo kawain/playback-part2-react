@@ -210,7 +210,7 @@ class PlayBack extends Component {
                     bad = true;
                 }
                 // 前頭を大文字
-                e = e.charAt(0).toUpperCase() + e.slice(1);
+                // e = e.charAt(0).toUpperCase() + e.slice(1);
                 arr2.push(e);
                 arr3.push(e);
                 old2 = e;

@@ -31,6 +31,7 @@ threshold
     既定値は 0 です (つまり、1ピクセルでも表示されるとコールバックが実行されます)。
     1.0 の値は全てのピクセルが見えるようになるまで、閾値をまたいだとみなされないことを意味します。
 */
+
 const intersectionOptions = {
     root: null,
     rootMargin: "0px",
@@ -106,7 +107,6 @@ function changeDom(time, count, index, countObj) {
 
 function playSoundChord(buffer, time, countObj) {
     const chords = findChordTone(chordArray[countObj.index])
-    console.log(chords);
     for (const v of chords) {
         const source = context.createBufferSource();
         source.buffer = buffer;
@@ -277,14 +277,38 @@ function firstTime() {
     soundLoop(countObj);
 }
 
-async function run() {
+// async function run() {
+
+//     // 音読み込み
+//     for (let key in soundFiles) {
+//         bufMap[key] = await loadFile(context, soundFiles[key])
+//     }
+
+//     firstTime();
+// }
+
+function run() {
+
+    let count = Object.keys(soundFiles).length;
+
+    console.log(count);
 
     // 音読み込み
     for (let key in soundFiles) {
-        bufMap[key] = await loadFile(context, soundFiles[key])
+        loadFile(context, soundFiles[key])
+            .then((e) => {
+                bufMap[key] = e;
+                count--;
+                if (count === 0) {
+                    console.log("読み込み");
+                    firstTime();
+                }
+            })
+            .catch((error) => {
+                alert(error);
+            });
     }
 
-    firstTime();
 }
 
 window.onload = () => {

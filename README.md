@@ -10,20 +10,9 @@ vscode 拡張機能の Simple React Snippets 使用
 
 React で window.open() してから小ウインドウを操作などが面倒そうだったため
 
-### score.js は Parcel でバンドル
+### score.js はバンドル
 
-Parcel があるという前提  
-
-```
-$ npm install -g parcel-bundler
-```
-
-以下のディレクトリで行う
-
-```
-$ cd public  
-$ parcel build ./src/score.js --no-source-maps  
-```
+$ npx webpack
 
 ## サーバーサイドは PHP
 
