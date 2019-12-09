@@ -97,7 +97,14 @@ const keyOrderMap = {
     "Ab": 11
 };
 
+const memoizationCache = {};
+
 export function findChordTone(str) {
+
+    if (memoizationCache[str]) {
+        return memoizationCache[str];
+    }
+
     let obj = divideInput(str);
 
     let { keyName, chordName, onKeyName } = obj;
@@ -107,6 +114,8 @@ export function findChordTone(str) {
     if (keyName !== "") {
         arr = chordTones(keyName, chordName, onKeyName);
     }
+
+    memoizationCache[str] = arr;
 
     return arr;
 }
